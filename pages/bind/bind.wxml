@@ -1,0 +1,16 @@
+<!--pages/bind/bind.wxml-->
+<view class='bind_wrapper'>
+  <view class='bind_container'>
+    <view class='info info_money'>绑定支付宝账号成为你的大额提现账户</view>
+    <view class='input_box'>
+      <input type="number" placeholder="请输入你的支付宝账号" auto-focus/>
+    </view>
+    <view class='input_box'>
+      <input type="text" placeholder="请输入你的真实姓名" auto-focus/>
+    </view>
+  </view>
+  <view class='cash_btn'>
+    <view class='btn_info'>绑定支付宝账号成为你的大额提现账户</view>
+    <v-button>绑定</v-button>
+  </view>
+</view>

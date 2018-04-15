@@ -1,22 +1,11 @@
-// pages/login/login.js
+// pages/bind/bind.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isLogin:true
-  },
-  goLogin(){
-    this.setData({
-      isLogin:false
-    })
-  },
-  goMy(){
-    let url = "/pages/my/my";
-    wx.switchTab({
-      url: url
-    })
+  
   },
 
   /**

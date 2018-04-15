@@ -31,7 +31,7 @@
     <view class='items'>
       斗鱼直播平台3
     </view>
-    <view class='btn'>
+    <view bindtap='goMy' class='btn'>
       <v-button>进入</v-button>
     </view>
   </view>
