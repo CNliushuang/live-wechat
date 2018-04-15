@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/account/account",
+    "pages/my/my",
+    "pages/login/login",
+
+    
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7F8389",
+    "selectedColor": "#DB3069",
+    "borderStyle": "black",
+    "backgroundColor": "#F7F7FA",
+    "list": [
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_hover.png",
+        "text": "我"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/list_hover.png",
+        "text": "账单"
+      }
+    ]
+  }
+}

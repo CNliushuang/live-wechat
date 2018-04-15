@@ -1,0 +1,81 @@
+<!--pages/my/my.wxml-->
+<view class='my_wrapper'>
+  <!--user info start-->
+  <view class='user'>
+    <view class='icon'>
+    </view>
+    <view class='content'>
+      <view class='nick_name'>Sniper</view>
+      <view class='plat_nick_name'>
+        NOW直播 昵称：王大锤
+      </view>
+      <view class='plat_id'>
+        ID:12321212323
+      </view>
+      <view class='other_info'>
+        公会：向来痴   经纪人：SniperHunter
+      </view>
+    </view>
+  </view>
+  <!--user info end-->
+  <!--user data start-->
+  <view class='user_data clearfix'>
+    <view class='items'>
+      <view class='name'>账户余额</view>
+      <view class='num'>21344.00</view>
+    </view>
+    <view class='items'>
+      <view class='name'>今日已提现余额</view>
+      <view class='num'>300.00</view>
+    </view>
+    <view class='items'>
+      <view class='name'>今日剩余可提现余额</view>
+      <view class='num'>21344.00</view>
+    </view>
+    <view class='items'>
+      <view class='name'>3月直播时间</view>
+      <view class='num'>200.23</view>
+    </view>
+    <view class='items'>
+      <view class='name'>3月直播有效天</view>
+      <view class='num'>20</view>
+    </view>
+  </view>
+  <!--user data end-->
+  <!--bind account start-->
+  <view class='bind_account'>
+    <view class='items clearfix'>
+      <view class='name'>小额提现账户</view>
+      <view class='content'>
+        微信零钱-xxxxx
+      </view>
+    </view>
+    <view class='items clearfix'>
+      <view class='name'>大额提现账户</view>
+      <view class='content'>
+        支付宝-xxxxx
+        <view class='go_bind'>去绑定</view>
+      </view>
+    </view>
+  </view>
+  <view class='operate'>
+    <view class='help'>10000元以内使用小额提现，快速到账</view>
+    <view class='items'>
+      <v-button>小额提现</v-button>
+    </view>
+    <view class='items'>
+      <v-button cycle="true">大额提现</v-button>
+    </view>
+    <view class='protocol'>
+      <view class='protocol_box'>
+        <v-checkbox></v-checkbox>
+        我已阅读并同意<text>《用户提现协议》</text>
+      </view>
+    </view>
+
+
+  </view>
+  <!--bind account end-->
+
+
+</view>

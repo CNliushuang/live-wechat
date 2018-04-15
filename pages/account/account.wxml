@@ -1,0 +1,83 @@
+<!--pages/account/account.wxml-->
+<view class='account_wrapper'>
+  <view class='tabs'>
+    <view bindtap="switchTab" data-tab="cash" class='cash items {{tab == "cash"?"active":""}}'>
+      提现记录<view class='line'></view>
+    </view>
+    <view bindtap="switchTab" data-tab="account" class='account items {{tab == "account"?"active":""}}'>
+      入账记录<view class='line'></view>
+    </view>
+  </view>
+  <view class='list_container'>
+    <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower">
+      <!--cash start-->
+      <block wx:if="{{tab == 'cash'}}">
+        <view class='items'>
+          <view class='top'>
+            <text>2018-03-02   17:21</text>
+            账单号：3JKJKLJ213321312321
+          </view>
+          <view class='info'>
+            <view class='item'>
+              <view class='name'>提现类型</view>
+              <view class='content'>小额提现</view>
+            </view>
+            <view class='item'>
+              <view class='name'>提现账户</view>
+              <view class='content'>dsfdsf</view>
+            </view>
+            <view class='item'>
+              <view class='name'>提现金额</view>
+              <view class='content'>200.00</view>
+            </view>
+            <view class='item'>
+              <view class='name'>提现进度</view>
+              <view class='content'>自动进账</view>
+            </view>
+            <view class='item'>
+              <view class='name'>备注</view>
+              <view class='content'>无</view>
+            </view>
+          </view>
+        </view>
+        </block>
+      <!--cash end-->
+      <!--account start-->
+      <block wx:if="{{tab == 'account'}}">
+        <view class='items'>
+          <view class='top'>
+            <text>2018-03-02   17:21</text>
+            账单号：3JKJKLJ213321312321
+          </view>
+          <view class='info'>
+            <view class='item'>
+              <view class='name'>入账类型</view>
+              <view class='content'>每日薪资</view>
+            </view>
+            <view class='item'>
+              <view class='name'>薪资日期</view>
+              <view class='content'>2017-02-04</view>
+            </view>
+            <view class='item'>
+              <view class='name'>入账金额</view>
+              <view class='content'>200.00</view>
+            </view>
+            <view class='item'>
+              <view class='name'>备注</view>
+              <view class='content'>无</view>
+            </view>
+          </view>
+        </view>
+        </block>
+
+
+
+      <!--account end-->
+    </scroll-view>
+  </view>
+
+
+
+
+
+</view>

@@ -1,0 +1,39 @@
+<!--pages/login/login.wxml-->
+<view class='login_wrapper'>
+  <view class='user'>
+    <view class='icon'></view>
+    <view class='name'>Sniper</view>
+  </view>
+  <!--login from start-->
+  <view wx:if="{{isLogin}}" class='login_form'>
+    <view class='mobile items'>
+      <input type='number' placeholder="输入手机号" auto-focus/>
+    </view>
+    <view class='code items'>
+      <view class='get_code'>获取验证码</view>
+      <view class='code_box'>
+        <input type='text' placeholder="输入验证码"/>
+      </view>
+    </view>
+    <view class='btn'>
+      <v-button bindtap='goLogin'>登录</v-button>
+    </view>
+  </view>
+  <!--login from end-->
+  <!--plat list start-->
+  <view wx:if="{{!isLogin}}" class='plat_list'>
+    <view class='items active'>
+      斗鱼直播平台1234
+    </view>
+    <view class='items'>
+      斗鱼直播平台2
+    </view>
+    <view class='items'>
+      斗鱼直播平台3
+    </view>
+    <view class='btn'>
+      <v-button>进入</v-button>
+    </view>
+  </view>
+  <!--plat list end-->
+</view>
