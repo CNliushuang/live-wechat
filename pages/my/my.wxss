@@ -19,6 +19,13 @@
   margin-top: 20rpx;
   box-shadow: 0 9px 17px 0 rgba(0,0,0,0.20);
 }
+.my_wrapper .user .icon image{
+  width: 135rpx;
+  height: 135rpx;
+  border-radius: 100%;
+}
+
+
 .my_wrapper .user .content{
   margin-left: 202rpx;
   font-size: 24rpx;

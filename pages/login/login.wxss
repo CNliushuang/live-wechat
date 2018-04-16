@@ -16,6 +16,11 @@
   margin: 0 auto;
   box-shadow: 0 9px 17px 0 rgba(0,0,0,0.20);
 }
+.login_wrapper .user .icon image{
+  width: 154rpx;
+  height: 154rpx;
+  border-radius: 100%;
+}
 
 .login_wrapper .user .name{
   text-align: center;
@@ -66,6 +71,7 @@
 
 .login_wrapper .login_form .items.code .get_code.disabled{
   background: #D8D8D8;
+  border:1rpx solid #D8D8D8;
 }
 
 .login_wrapper .login_form .items.code .code_box{

@@ -3,17 +3,21 @@
   <!--user info start-->
   <view class='user'>
     <view class='icon'>
+    <block wx:if="{{userInfo}}">
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </block>
     </view>
     <view class='content'>
-      <view class='nick_name'>Sniper</view>
+      <view class='nick_name'>{{user.loginName}}</view>
       <view class='plat_nick_name'>
-        NOW直播 昵称：王大锤
+        {{user.platName}} 昵称：{{user.nickname}}
       </view>
       <view class='plat_id'>
-        ID:12321212323
+        ID:{{user.id}}
       </view>
       <view class='other_info'>
-        公会：向来痴   经纪人：SniperHunter
+        公会：{{user.unionName}} 
+          <!-- 经纪人：SniperHunter -->
       </view>
     </view>
   </view>
@@ -47,14 +51,25 @@
     <view class='items clearfix'>
       <view class='name'>小额提现账户</view>
       <view class='content'>
-        微信零钱-xxxxx
+        <block wx:if="{{autoAccount}}">
+          微信零钱-{{autoAccount.accountNum}}
+        </block>
+        <block wx:else>
+          未设置
+        </block>
+        <view data-type="AUTO" bindtap='go_bind' class='go_bind'>去绑定</view>
       </view>
     </view>
     <view class='items clearfix'>
       <view class='name'>大额提现账户</view>
       <view class='content'>
-        支付宝-xxxxx
-        <view class='go_bind'>去绑定</view>
+        <block wx:if="{{handleAccount}}">
+          支付宝-{{handleAccount.accountNum}}
+        </block>
+        <block wx:else>
+          未设置
+        </block>
+        <view data-type="HANDLE" bindtap='go_bind' class='go_bind'>去绑定</view>
       </view>
     </view>
   </view>

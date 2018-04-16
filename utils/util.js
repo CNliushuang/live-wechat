@@ -1,3 +1,70 @@
+const app = getApp();
+
+/*通用联网代理*/
+export const httpAgent = (url, requestType, params, cb, errorcb, showLoading) => {
+  if (showLoading) {
+    wx.showLoading({
+      title: 'Loading...',
+    })
+  }
+  var token = app.globalData.token;
+  var plat = app.globalData.plat;
+  if(url.indexOf("?") >= 0){
+    url = url + '&plat='+plat;
+  }else{
+    url = url + '?plat='+plat;
+  }
+  if(token){
+    url = url + '&token='+token;
+  }
+
+
+
+  // if (typeof params === "string"){
+  //   params = params + '&plat=plat';
+  //   if(token){
+  //     params = params + '&token='+token;
+  //   }
+  // }else{
+  //   params.plat = plat;
+  //   if(token){
+  //     params.token = token;
+  //   }
+  // }
+  wx.request({
+    url: url, //仅为示例，并非真实的接口地址
+    data: params,
+    method: requestType,
+    // header: {
+    //   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' // 默认值
+    // },
+    success: function (res) {
+      wx.hideLoading();
+      var data = res.data;
+      if (data.result && data.result != 0) {
+        if (data.result == -10001) {//token过期了
+          console.log("token 过期了");
+        } else {
+          if (errorcb) {
+            errorcb(data);
+          } else {
+            const content = data.msg + '，url地址：' + url;
+            console.log(content);
+            console.log(params);
+          }
+        }
+      } else {
+        cb(data);
+      }
+    },
+    fail: function (res) {
+      wx.hideLoading();
+      errorcb && errorcb(res);
+    }
+  })
+}
+
+
 /*时间戳转换日期格式*/
 export const timesToDate = (tm, pattern) => {
   if (tm == "" || tm == null || tm == undefined) {
@@ -72,45 +139,7 @@ export const unique = (arr) => {
 
 
 
-/*通用联网代理*/
-export const httpAgent = (url, requestType, params, cb, errorcb, showLoading) => {
-  if (showLoading) {
-    wx.showLoading({
-      title: 'Loading...',
-    })
-  }
-  wx.request({
-    url: url, //仅为示例，并非真实的接口地址
-    data: params,
-    method: requestType,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' // 默认值
-    },
-    success: function (res) {
-      wx.hideLoading();
-      var data = res.data;
-      if (data.result && data.result != 0) {
-        if (data.result == -10001) {//token过期了
-          console.log("token 过期了");
-        } else {
-          if (errorcb) {
-            errorcb(data);
-          } else {
-            const content = data.msg + '，url地址：' + url;
-            console.log(content);
-            console.log(params);
-          }
-        }
-      } else {
-        cb(data);
-      }
-    },
-    fail: function (res) {
-      wx.hideLoading();
-      errorcb && errorcb(res);
-    }
-  })
-}
+
 
 /*老代码formatTime*/
 export const formatTime = (date) => {
