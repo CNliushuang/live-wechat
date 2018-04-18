@@ -11,7 +11,8 @@ Page({
     cashAccount:[],
     autoAccount:null,
     handleAccount:null,
-    userInfo:null
+    userInfo:null,
+    agree:true
   },
 
   /**
@@ -60,10 +61,10 @@ Page({
       let handleAccount=null,autoAccount=null;
       if(resp.list && resp.list.length > 0){
         for(var items of resp.list){
-          if (items.cashType == "HANDLE"){
+          if (items.cashType == "HANDLE" && items.deleted == 0){
             handleAccount = items;
           }
-          if (items.cashType == "AUTO") {
+          if (items.cashType == "AUTO" && items.deleted == 0) {
             autoAccount = items;
           }
         }
@@ -76,7 +77,7 @@ Page({
       })
     })
   },
-  go_bind(e){//绑定账号
+  goBind(e){//绑定账号
     const cashType = e.target.dataset.type;
     console.log(cashType)
     const url = '/pages/bind/bind?cashType=' + cashType;
@@ -84,6 +85,53 @@ Page({
       url: url
     })
   },
+  deleteBind(e){//删除绑定账号
+    const uuid = e.target.dataset.uuid;
+    store.deleteBindAccount({uuid},(resp) => {
+      this.getCashAccount();
+    })
+  },
+  goAutoCash(){//小额提现
+    if(!this.data.agree){
+      return false;
+    }
+    if (!this.data.autoAccount){
+      wx.showToast({
+        title: '请选绑定小额提现账户',
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    wx.navigateTo({
+      url: '/pages/cash/cash?type=AUTO&account=' + JSON.stringify(this.data.autoAccount)
+    })
+  },
+  goHandleCash() {//大额提现
+    if (!this.data.agree) {
+      return false;
+    }
+    if (!this.data.handleAccount) {
+      wx.showToast({
+        title: '请选绑定大额提现账户',
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    wx.navigateTo({
+      url: '/pages/cash/cash?type=HANDLE&account=' + JSON.stringify(this.data.handleAccount)
+    })
+  },
+  agreeProtocol(){
+    var result = !this.data.agree;
+    this.setData({
+      agree:result
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

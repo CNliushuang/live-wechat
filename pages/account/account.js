@@ -1,4 +1,6 @@
 // pages/account/account.js
+import { store } from './store';
+const app = getApp();
 Page({
 
   /**
@@ -6,7 +8,8 @@ Page({
    */
   data: {
     list:[],
-    tab:"cash"
+    tab:"cash",
+    limit:50
   },
   switchTab(event){
     let tab = event.target.dataset.tab;
@@ -14,14 +17,27 @@ Page({
       this.setData({
         tab:tab
       })
+      this.getList();
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getList();
 
+  },
+  getList(start){
+    start = start || 0;
+    if(this.data.tab == 'cash'){
+      store.getCashList({start,limit:this.data.limit},(resp) => {
+        console.log(resp)
+      })
+    }else{
+      store.getAccountList({ start, limit: this.data.limit }, (resp) => {
+        console.log(resp)
+      })
+    }
   },
   upper(){
 

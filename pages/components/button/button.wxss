@@ -11,7 +11,9 @@
 }
 
 .v-button.disabled{
-  background: #D8D8D8;
+  background: #D8D8D8 !important;
+  color: #ffffff !important;
+  border:1px solid #D8D8D8 !important;
 }
 
 .v-button.v-cycle{

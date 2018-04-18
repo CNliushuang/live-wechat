@@ -24,7 +24,7 @@
     </view>
     <view class='cash_btn'>
       <view class='btn_info'>绑定微信账号成为你的小额提现账户</view>
-      <v-button>绑定</v-button>
+      <v-button bindtap='goBindAuto'>绑定</v-button>
     </view>
   </block>
 

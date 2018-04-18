@@ -7,7 +7,7 @@ const api = '/api';
 const app = getApp();
 
 export const store = {
-  bindHandleAccount({ accountNickname, cashType, accountType, accountName, accountNum }, cb) {
+  bindAccount({ accountNickname, cashType, accountType, accountName, accountNum }, cb) {
     const url = baseUrl + api + '/user/cash/account.json';
     const param = {
       accountNickname,

@@ -13,5 +13,12 @@ export const store = {
     };
     httpAgent(url, 'GET', param, cb);
   },
+  deleteBindAccount({ uuid }, cb) {
+    let url = baseUrl + api + '/user/cash/account/' + uuid +'.json';
+    url = url + '?_method=delete';
+    const param = {
+    };
+    httpAgent(url, 'DELETE', param, cb);
+  },
 
 }

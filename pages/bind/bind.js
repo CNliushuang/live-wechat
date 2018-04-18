@@ -79,7 +79,39 @@ Page({
     let accountNum = this.data.zfb.accountNum;
     let cashType = this.data.cashType;
     let accountType = this.data.cashType == "AUTO"?0:1;
-    store.bindHandleAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum},(resp) => {
+    store.bindAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum},(resp) => {
+      wx.showToast({
+        title: "绑定成功",
+        icon: 'success',
+        duration: 2000
+      })
+
+    })
+
+
+
+
+  },
+  goBindAuto(){
+    if (!this.data.wechat.accountName) {
+      wx.showToast({
+        title: "请输入真实姓名",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+    console.log(app.globalData)
+    
+    let accountName = this.data.wechat.accountName;
+    let accountNum = app.globalData.userOpen.openId;
+    let cashType = this.data.cashType;
+    let accountType = this.data.cashType == "AUTO" ? 0 : 1;
+    let accountNickname = app.globalData.userInfo.nickName;
+
+
+
+    store.bindAccount({ accountNickname: accountNickname, cashType, accountType, accountName, accountNum }, (resp) => {
       wx.showToast({
         title: "绑定成功",
         icon: 'success',

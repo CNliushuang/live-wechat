@@ -1,17 +1,15 @@
 //app.js
+import { config } from './utils/config'
+
+const baseUrl = config.formal.server;
+const api = config.project + '/api';
+
+
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    if(!this.globalData.userOpen){
+      this.getUserOpen();
+    }
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -33,11 +31,47 @@ App({
       }
     })
   },
+  getUserOpen(){
+    // 登录
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res);
+        var code = res.code;
+        wx.getUserInfo({
+          success: resp => {
+            console.log(resp);
+            var encrypted_data = resp.encryptedData;
+            var iv = resp.iv;
+            let url = baseUrl + api + '/user/oauth2/wechat/weapp/decrypt.json';
+            url = url + '?code=' + encodeURIComponent(code) + '&encrypted_data=' + encodeURIComponent(encrypted_data) + '&iv=' + encodeURIComponent(iv);
+            wx.request({
+              url: url,
+              data: {
+                // code: code,
+                // encrypted_data: encrypted_data,
+                // iv: iv
+              },
+              // header: {
+              //   'content-type': 'application/x-www-form-urlencoded; charset=UTF-8' // 默认值
+              // },
+              method: "POST",
+              success: resps => {
+                console.log(resps)
+                this.globalData.userOpen = resps.data.userOpen;
+              }
+            })
+          }
+        })
+      }
+    })
+  },
   globalData: {
     userInfo: null,
     token:"c9ab060166e5371f304ca3491d87a244",
     plat:"wechat",
     timer:null,
+    userOpen:null,
     "user": {
       "uuid": "985845549351702528",
       "id": 1029,

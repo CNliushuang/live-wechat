@@ -1,17 +1,17 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/my/my",
-    "pages/bind/bind",
-    "pages/cash/cash",
     "pages/account/account",
+    "pages/cash/cash",
+    "pages/login/login",
+    "pages/bind/bind",
     "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "星火艺人管理",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

@@ -57,7 +57,12 @@
         <block wx:else>
           未设置
         </block>
-        <view data-type="AUTO" bindtap='go_bind' class='go_bind'>去绑定</view>
+        <block wx:if="{{autoAccount}}">
+          <view data-uuid="{{autoAccount.uuid}}" bindtap='deleteBind' class='go_bind'>删除</view>
+        </block>
+        <block wx:else>
+          <view data-type="AUTO" bindtap='goBind' class='go_bind'>去绑定</view>
+        </block>        
       </view>
     </view>
     <view class='items clearfix'>
@@ -69,21 +74,27 @@
         <block wx:else>
           未设置
         </block>
-        <view data-type="HANDLE" bindtap='go_bind' class='go_bind'>去绑定</view>
+        <block wx:if="{{handleAccount}}">
+          <view data-uuid="{{handleAccount.uuid}}" bindtap='deleteBind' class='go_bind'>删除</view>
+        </block>
+        <block wx:else>
+          <view data-type="HANDLE" bindtap='goBind' class='go_bind'>去绑定</view>
+        </block>
+
       </view>
     </view>
   </view>
   <view class='operate'>
     <view class='help'>10000元以内使用小额提现，快速到账</view>
     <view class='items'>
-      <v-button>小额提现</v-button>
+      <v-button bindtap='goAutoCash' disabled="{{!agree}}">小额提现</v-button>
     </view>
     <view class='items'>
-      <v-button cycle="true">大额提现</v-button>
+      <v-button bindtap='goHandleCash' disabled="{{!agree}}" cycle="true">大额提现</v-button>
     </view>
-    <view class='protocol'>
+    <view class='protocol' bindtap='agreeProtocol'>
       <view class='protocol_box'>
-        <v-checkbox></v-checkbox>
+        <v-checkbox  checked="{{agree}}"></v-checkbox>
         我已阅读并同意<text>《用户提现协议》</text>
       </view>
     </view>
