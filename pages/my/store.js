@@ -20,5 +20,14 @@ export const store = {
     };
     httpAgent(url, 'DELETE', param, cb);
   },
+  getAnalyze({  }, cb) {
+    let url = baseUrl + api + '/analyze/user/weapp.json';
+    const param = {
+    };
+    httpAgent(url, 'GET', param, cb);
+  },
+
+
+  
 
 }

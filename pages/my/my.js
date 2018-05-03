@@ -12,7 +12,9 @@ Page({
     autoAccount:null,
     handleAccount:null,
     userInfo:null,
-    agree:true
+    agree:true,
+    analyze:null,
+    month:""
   },
 
   /**
@@ -24,8 +26,21 @@ Page({
         user:app.globalData.user
       })
     }
+    var date = new Date();
+    this.setData({
+      month:(date.getMonth()+1)+'月'
+    })
+
     this.getCashAccount();
     this.getUserInfo();
+    this.getAnalyze();
+  },
+  getAnalyze(){
+    store.getAnalyze({},(resp) => {
+      this.setData({
+        analyze: resp.analyze
+      })
+    })
   },
   getUserInfo(){
     if (app.globalData.userInfo) {

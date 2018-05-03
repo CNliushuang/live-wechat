@@ -20,7 +20,7 @@ export const store = {
     const param = {
       start,
       limit,
-      type:1
+      type:0
     };
     httpAgent(url, 'GET', param, cb);
   },

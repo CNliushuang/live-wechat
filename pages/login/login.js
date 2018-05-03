@@ -16,8 +16,40 @@ Page({
       lockedTime:60
     },
     users:[],
-    select_user_uuid:""
+    select_user_uuid:"",
+    plats:[],
+    select_plat_uuid:""
   },
+  canILogin(){
+    if(!wx.canIUse('button.open-type.getUserInfo')){
+      wx.showModal({
+        title: '微信版本太旧',
+        content: '使用旧版本微信无法登录，请升级您的微信版本',
+      })
+    }
+  },
+  login(userinfo){
+    console.log(userinfo)
+    this.setData({
+      userInfo: userinfo.detail.userInfo,
+      hasUserInfo: true
+    })
+    app.login(userinfo.detail,(err,res) => {
+      if (app.globalData.userInfo) {
+        
+      }
+
+
+
+      this.goLogin();
+    })
+  },
+
+
+
+
+
+
   goLogin(){
     if (!this.data.login.mobile) {
       wx.showToast({
@@ -36,11 +68,18 @@ Page({
       return false;
     }
     clearInterval(app.globalData.timer);
+    //存一份mobile
+    app.globalData.mobile = this.data.login.mobile;
+
     store.login({mobile:this.data.login.mobile,code:this.data.login.code},(resp) => {
       // console.log(resp)
+      
       this.setData({
-        "users": resp.users
+        "users": resp.users,
+        "plats":resp.plats
       })
+      
+
     },(resp) => {
       wx.showToast({
         title: resp.msg,
@@ -79,8 +118,30 @@ Page({
         })
       })
     }
+  },
+  goApply(){
+    if (!this.data.select_plat_uuid) {
+      wx.showToast({
+        title: "请选择申请平台",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+    let obj = null;
+    for (var items of this.data.plats) {
+      if (items.uuid == this.data.select_plat_uuid) {
+        obj = items;
+      }
+    }
 
-    
+    let name = obj.name || '';
+
+
+    let url = '/pages/apply/apply?plat_id='+this.data.select_plat_uuid+'&plat_name='+name;
+    wx.navigateTo({
+      url: url
+    })
   },
   setLoginMobile(e){
     var mobile = e.detail.value;
@@ -133,6 +194,16 @@ Page({
         duration: 2000
       })
       console.log(resp);
+      wx.showModal({
+        title: '验证码',
+        content: resp.code,
+        success: function (res) {
+   
+        }
+      })
+
+
+
     })
 
 
@@ -144,34 +215,24 @@ Page({
     })
 
   },
+  selectPlat(e) {
+    const uuid = e.target.dataset.uuid;
+    this.setData({
+      "select_plat_uuid": uuid
+    })
+
+  },
+  
 
   getUserInfo() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    // if (app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // }else {
+    //   app.checkUserAuth();
+    // }
   },
 
   /**

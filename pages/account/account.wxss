@@ -54,17 +54,30 @@
   margin-right: 43rpx;
 }
 .account_wrapper .list_container .items .info{
-  display: flex;
-  flex-direction: row;
+  
 }
 .account_wrapper .list_container .items .info .item{
-  flex: 1;
+  width: 20%;
+  float: left;
 }
+
+.account_wrapper .list_container .items.account .info .item{
+  width: 25%;
+  float: left;
+}
+
 .account_wrapper .list_container .items .info .item .name{
   margin-top: 17rpx;
 }
 .account_wrapper .list_container .items .info .item .content{
   margin-top: 17rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 

@@ -1,55 +1,18 @@
-// pages/account/account.js
-import { store } from './store';
-const app = getApp();
+// pages/auth/auth.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:[],
-    tab:"cash",
-    limit:50
+  
   },
-  switchTab(event){
-    let tab = event.target.dataset.tab;
-    if(tab != this.tab){
-      this.setData({
-        tab:tab
-      })
-      this.getList();
-    }
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList();
-
-  },
-  getList(start){
-    start = start || 0;
-    if(this.data.tab == 'cash'){
-      store.getCashList({start,limit:this.data.limit},(resp) => {
-        // console.log(resp)
-        this.setData({
-          list:resp.list
-        })
-      })
-    }else{
-      store.getAccountList({ start, limit: this.data.limit }, (resp) => {
-        // console.log(resp)
-        this.setData({
-          list: resp.list
-        })
-      })
-    }
-  },
-  upper(){
-
-  },
-  lower(){
-
+  
   },
 
   /**

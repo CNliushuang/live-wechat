@@ -1,4 +1,6 @@
 <!--pages/account/account.wxml-->
+<wxs src="../../utils/util.wxs" module="util" />
+
 <view class='account_wrapper'>
   <view class='tabs'>
     <view bindtap="switchTab" data-tab="cash" class='cash items {{tab == "cash"?"active":""}}'>
@@ -12,27 +14,27 @@
     <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower">
       <!--cash start-->
       <block wx:if="{{tab == 'cash'}}">
-        <view class='items'>
+        <view wx:for="{{list}}" wx:key="uuid" class='items'>
           <view class='top'>
-            <text>2018-03-02   17:21</text>
-            账单号：3JKJKLJ213321312321
+            <text>{{util.timesToDate(item.createDate,'yyyy-MM-dd HH:mm')}}</text>
+            账单号：{{item.trackNum}}
           </view>
-          <view class='info'>
+          <view class='info clearfix'>
             <view class='item'>
               <view class='name'>提现类型</view>
-              <view class='content'>小额提现</view>
+              <view class='content'>{{item.cashAccountType == 0?"微信小程序":"支付宝"}}</view>
             </view>
             <view class='item'>
               <view class='name'>提现账户</view>
-              <view class='content'>dsfdsf</view>
+              <view class='content'>{{item.cashAccountName}}</view>
             </view>
             <view class='item'>
               <view class='name'>提现金额</view>
-              <view class='content'>200.00</view>
+              <view class='content'>{{item.money}}</view>
             </view>
             <view class='item'>
               <view class='name'>提现进度</view>
-              <view class='content'>自动进账</view>
+              <view class='content'>{{util.cashFilter(item.status)}}</view>
             </view>
             <view class='item'>
               <view class='name'>备注</view>
@@ -44,23 +46,23 @@
       <!--cash end-->
       <!--account start-->
       <block wx:if="{{tab == 'account'}}">
-        <view class='items'>
+        <view wx:for="{{list}}" wx:key="uuid" class='items account'>
           <view class='top'>
-            <text>2018-03-02   17:21</text>
-            账单号：3JKJKLJ213321312321
+            <text>{{util.timesToDate(item.createDate,'yyyy-MM-dd HH:mm')}}</text>
+            账单号：{{item.trackNum}}
           </view>
-          <view class='info'>
+          <view class='info clearfix'>
             <view class='item'>
               <view class='name'>入账类型</view>
-              <view class='content'>每日薪资</view>
+              <view class='content'>{{item.type == 0?"收入":"提现"}}</view>
             </view>
             <view class='item'>
               <view class='name'>薪资日期</view>
-              <view class='content'>2017-02-04</view>
+              <view class='content'>{{util.timesToDate(item.createDate,'yyyy-MM-dd')}}</view>
             </view>
             <view class='item'>
               <view class='name'>入账金额</view>
-              <view class='content'>200.00</view>
+              <view class='content'>{{item.moneyAfter}}</view>
             </view>
             <view class='item'>
               <view class='name'>备注</view>

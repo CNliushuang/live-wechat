@@ -26,23 +26,23 @@
   <view class='user_data clearfix'>
     <view class='items'>
       <view class='name'>账户余额</view>
-      <view class='num'>21344.00</view>
+      <view class='num'>{{analyze && analyze.accountMoney || 0}}</view>
     </view>
     <view class='items'>
       <view class='name'>今日已提现余额</view>
-      <view class='num'>300.00</view>
+      <view class='num'>{{analyze && analyze.todayCashMoney || 0}}</view>
     </view>
     <view class='items'>
       <view class='name'>今日剩余可提现余额</view>
-      <view class='num'>21344.00</view>
+      <view class='num'>{{analyze && analyze.todayValidMoney || 0}}</view>
     </view>
     <view class='items'>
-      <view class='name'>3月直播时间</view>
-      <view class='num'>200.23</view>
+      <view class='name'>{{month}}直播时间</view>
+      <view class='num'>{{analyze && analyze.curMonthShowHour || 0}}</view>
     </view>
     <view class='items'>
-      <view class='name'>3月直播有效天</view>
-      <view class='num'>20</view>
+      <view class='name'>{{month}}直播有效天</view>
+      <view class='num'>{{analyze && analyze.curMonthShowValidDay || 0}}</view>
     </view>
   </view>
   <!--user data end-->
@@ -52,7 +52,7 @@
       <view class='name'>小额提现账户</view>
       <view class='content'>
         <block wx:if="{{autoAccount}}">
-          微信零钱-{{autoAccount.accountNum}}
+          微信零钱-{{autoAccount.accountNickname}}
         </block>
         <block wx:else>
           未设置
@@ -69,7 +69,7 @@
       <view class='name'>大额提现账户</view>
       <view class='content'>
         <block wx:if="{{handleAccount}}">
-          支付宝-{{handleAccount.accountNum}}
+          支付宝-{{handleAccount.accountNickname}}
         </block>
         <block wx:else>
           未设置
