@@ -79,6 +79,9 @@ Page({
         "plats":resp.plats
       })
       
+      this.setData({
+        isLogin: false
+      })
 
     },(resp) => {
       wx.showToast({
@@ -86,11 +89,10 @@ Page({
         icon: 'none',
         duration: 2000
       })
+
     })
 
-    this.setData({
-      isLogin:false
-    })
+    
   },
   goMy(){
     if (!this.data.select_user_uuid){

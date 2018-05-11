@@ -7,7 +7,7 @@ const api = '/api';
 const app = getApp();
 
 export const store = {
-  applyActor({mobile,openId,platId, platName, identityName,qq,wechat, attachments, summary }, cb) {
+  applyActor({ nickname, avatarUrl,mobile,openId,platId, platName, identityName,qq,wechat, attachments, summary }, cb) {
     const url = baseUrl + api + '/user/actor/apply.json';
     const param = {
       platId,
@@ -18,7 +18,9 @@ export const store = {
       qq,
       wechat,
       mobile,
-      openId
+      openId,
+      nickname,
+      avatarUrl
     };
     httpAgent(url, 'POST', param, cb);
   },

@@ -85,3 +85,22 @@
   margin-top: 85rpx;
 }
 
+
+.apply .success{
+  margin-top: 200rpx;
+  text-align: center;
+}
+
+.apply .success .info{
+  font-size: 40rpx;
+  color: #000000;
+  margin-top: 47rpx;
+}
+
+.apply .success .summary{
+  font-size: 28rpx;
+  color: #888888;
+  margin-top: 30rpx;
+}
+
+

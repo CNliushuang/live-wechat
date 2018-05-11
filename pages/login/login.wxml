@@ -1,6 +1,6 @@
 <!--pages/login/login.wxml-->
 <view class='login_wrapper'>
-   <view class='user'>
+   <view wx:if="{{userInfo}}" class='user'>
     <view class='icon'>
       <block wx:if="{{userInfo}}">
         <image src="{{userInfo.avatarUrl}}"></image>

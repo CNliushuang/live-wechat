@@ -6,8 +6,8 @@
     "pages/cash/cash",
     "pages/bind/bind",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/apply/apply",
+    "pages/logs/logs",
     "pages/auth/auth"
   ],
   "window": {

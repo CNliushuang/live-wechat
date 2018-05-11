@@ -27,7 +27,8 @@ Page({
       qq:"",
       wechat:"",
       summary:""
-    }
+    },
+    is_apply:true
   },
 
   /**
@@ -183,20 +184,26 @@ Page({
     let wechat = this.data.user.wechat;
     let mobile = app.globalData.mobile || '';
     let openId = app.globalData.userOpen.openId;
+    let nickname = app.globalData.userInfo.nickName;
+    let avatarUrl = app.globalData.userInfo.avatarUrl;
+
+
 
     let attachments = [];
     if(this.data.img_1.uuid){
-      attachments.push(this.data.img_1.uuid)
+      attachments.push({uuid:this.data.img_1.uuid})
     }
     if (this.data.img_2.uuid) {
-      attachments.push(this.data.img_2.uuid)
+      attachments.push({ uuid: this.data.img_2.uuid })
     }
     if (this.data.img_3.uuid) {
-      attachments.push(this.data.img_3.uuid)
+      attachments.push({ uuid: this.data.img_3.uuid })
     }
 
-    store.applyActor({ mobile, openId, platId, platName, identityName, summary, qq, attachments,wechat},() => {
-      
+    store.applyActor({ nickname, avatarUrl, mobile, openId, platId, platName, identityName, summary, qq, attachments,wechat},() => {
+      this.setData({
+        is_apply:false
+      })
     })
   },
 

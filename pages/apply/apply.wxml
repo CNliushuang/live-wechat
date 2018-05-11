@@ -1,5 +1,6 @@
 <!--pages/apply/apply.wxml-->
 <view class='apply'>
+<block wx:if="{{is_apply}}">
   <view class='group'>
     <view class='title'>姓名</view>
     <view class='input_box'>
@@ -54,6 +55,19 @@
   <view class='group submit'>
     <v-button bindtap='submitApply'>提交资料</v-button>
   </view>
-
-
+  </block>
+  <block wx:else>
+    <view class='success'>
+      <view>
+        <icon type="success" size="80" color="#DB3069"/>
+      </view>
+      <view class='info'>
+        <text>申请主播资料已提交</text>
+      </view>
+      <view class='summary'>
+        <text>请耐心等待工作人员主动联系你</text>
+      </view>
+      
+    </view>
+  </block>
 </view>
