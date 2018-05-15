@@ -26,6 +26,17 @@ export const store = {
     let param = {
     };
     httpAgent(url, 'POST', param, cb);
+  },
+  getOrgDetail({ orgId }, cb) {
+    let url = baseUrl + api + '/org/'+orgId+'.json';
+    let param = {
+    };
+    httpAgent(url, 'GET', param, cb);
   }
+
+
+
+
+  
 
 }

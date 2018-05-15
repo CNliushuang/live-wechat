@@ -38,6 +38,23 @@
   background: #DB3069;
 }
 
+.account_wrapper .date_picker{
+  height: 40rpx;
+  padding: 6rpx 10rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.account_wrapper .date_picker .section{
+  height: 40rpx;
+  line-height: 52rpx;
+  flex: 1;
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+
+
 .account_wrapper .list_container{
   flex-grow: 1;
   height: 0;

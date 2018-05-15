@@ -14,7 +14,8 @@ Page({
     userInfo:null,
     agree:true,
     analyze:null,
-    month:""
+    month:"",
+    plat:null
   },
 
   /**
@@ -26,6 +27,15 @@ Page({
         user:app.globalData.user
       })
     }
+
+    if (app.globalData.plat) {
+      this.setData({
+        plat: app.globalData.plat
+      })
+    }
+
+
+
     var date = new Date();
     this.setData({
       month:(date.getMonth()+1)+'月'

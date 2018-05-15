@@ -9,8 +9,29 @@
     <view bindtap="switchTab" data-tab="account" class='account items {{tab == "account"?"active":""}}'>
       入账记录<view class='line'></view>
     </view>
+    <view bindtap="switchTab" data-tab="time" class='time items {{tab == "time"?"active":""}}'>
+      直播时长<view class='line'></view>
+    </view>
+  </view>
+  <view class='date_picker'>
+    <view class="section">
+      <picker mode="date" value="{{start}}"  bindchange="bindChangeStart">
+        <view class="picker">
+          开始时间: {{start}}
+        </view>
+      </picker>
+    </view>
+    <view class="section">
+      <picker mode="date" value="{{end}}"  bindchange="bindChangeEnd">
+        <view class="picker">
+          结束时间: {{end}}
+        </view>
+      </picker>
+    </view>
   </view>
   <view class='list_container'>
+  
+
     <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower">
       <!--cash start-->
       <block wx:if="{{tab == 'cash'}}">
@@ -72,7 +93,29 @@
         </view>
         </block>
 
+        <block wx:if="{{tab == 'time'}}">
+        <view wx:for="{{list}}" wx:key="uuid" class='items account'>
+          <view class='top'>
+            <text>{{util.timesToDate(item.day,'yyyy-MM-dd HH:mm')}}</text>
+          </view>
+          <view class='info clearfix'>
+            <view class='item'>
+              <view class='name'>直播时长</view>
+              <view class='content'>{{item.showHour}}</view>
+            </view>
+            <view class='item'>
+              <view class='name'>昨日粉丝量</view>
+              <view class='content'>{{item.yesterdayFansCount}}</view>
+            </view>
+            <view class='item'>
+              <view class='name'>今日粉丝量</view>
+              <view class='content'>{{item.todayFansCount}}</view>
+            </view>
 
+
+          </view>
+        </view>
+        </block>
 
       <!--account end-->
     </scroll-view>

@@ -114,6 +114,14 @@ Page({
         // console.log(resp);
         app.globalData.token = resp.token;
         app.globalData.user = obj.user;
+
+        if(obj.user.platId){
+          store.getOrgDetail({orgId:obj.user.platId},(data) => {
+            app.globalData.plat = data.org;
+          })
+        }
+
+
         let url = "/pages/my/my";
         wx.switchTab({
           url: url

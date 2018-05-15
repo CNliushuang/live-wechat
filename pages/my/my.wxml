@@ -8,7 +8,7 @@
     </block>
     </view>
     <view class='content'>
-      <view class='nick_name'>{{user.loginName}}</view>
+      <view class='nick_name'>{{userInfo.nickName}}</view>
       <view class='plat_nick_name'>
         {{user.platName}} 昵称：{{user.nickname}}
       </view>
@@ -29,11 +29,11 @@
       <view class='num'>{{analyze && analyze.accountMoney || 0}}</view>
     </view>
     <view class='items'>
-      <view class='name'>今日已提现余额</view>
+      <view class='name'>今日已提现金额</view>
       <view class='num'>{{analyze && analyze.todayCashMoney || 0}}</view>
     </view>
     <view class='items'>
-      <view class='name'>今日剩余可提现余额</view>
+      <view class='name'>今日小额可提现金额</view>
       <view class='num'>{{analyze && analyze.todayValidMoney || 0}}</view>
     </view>
     <view class='items'>
@@ -85,7 +85,7 @@
     </view>
   </view>
   <view class='operate'>
-    <view class='help'>10000元以内使用小额提现，快速到账</view>
+    <view class='help'>{{plat.autoTimeMax}}元以内使用小额提现，快速到账</view>
     <view class='items'>
       <v-button bindtap='goAutoCash' disabled="{{!agree}}">小额提现</v-button>
     </view>

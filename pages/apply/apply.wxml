@@ -20,7 +20,7 @@
   <view class='group'>
     <view class='title'>你是怎么了解到我们的？</view>
     <view class='input_box'>
-      <input bindinput='changeInfo' data-type="summary" type="text" placeholder="请填写你了解打到我们的方式"/>
+      <input bindinput='changeInfo' data-type="summary" type="text" placeholder="请填写你了解到我们的方式"/>
     </view>
   </view>
   <view class='group images'>

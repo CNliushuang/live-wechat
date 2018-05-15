@@ -1,6 +1,10 @@
 // pages/account/account.js
 import { store } from './store';
 const app = getApp();
+
+import { dateToTimes } from '../../utils/util'
+
+
 Page({
 
   /**
@@ -9,7 +13,9 @@ Page({
   data: {
     list:[],
     tab:"cash",
-    limit:50
+    limit:50,
+    start:"",
+    end:""
   },
   switchTab(event){
     let tab = event.target.dataset.tab;
@@ -27,17 +33,47 @@ Page({
     this.getList();
 
   },
+  bindChangeStart: function (e) {
+    this.setData({
+      start: e.detail.value
+    })
+    this.getList();
+  },
+  bindChangeEnd: function (e) {
+    this.setData({
+      end: e.detail.value
+    })
+    this.getList();
+  },
   getList(start){
     start = start || 0;
+    let filter = {};
+    if(this.data.start){
+      var startDate = dateToTimes(this.data.start + ' 00:00:00');
+      filter.startDate = startDate;
+    }
+    if (this.data.end) {
+      var endDate = dateToTimes(this.data.end + ' 23:59:59');
+      filter.endDate = endDate;
+    }
+
+
     if(this.data.tab == 'cash'){
-      store.getCashList({start,limit:this.data.limit},(resp) => {
+      store.getCashList({ start, limit: this.data.limit, filter},(resp) => {
         // console.log(resp)
         this.setData({
           list:resp.list
         })
       })
+    }else if(this.data.tab == 'time'){
+      store.getTimeList({ start, limit: this.data.limit, filter }, (resp) => {
+        // console.log(resp)
+        this.setData({
+          list: resp.list
+        })
+      })
     }else{
-      store.getAccountList({ start, limit: this.data.limit }, (resp) => {
+      store.getAccountList({ start, limit: this.data.limit, filter }, (resp) => {
         // console.log(resp)
         this.setData({
           list: resp.list

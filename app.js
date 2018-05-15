@@ -127,12 +127,13 @@ App({
   },
   globalData: {
     userInfo: null,
-    token:"",
+    token: "f95d4b2bd0038b3913da73b093bc7aa7",//f95d4b2bd0038b3913da73b093bc7aa7
     plat:"wechat",
     timer:null,
     userOpen:null,
     uploadFiles:{},
     mobile:"",
+    plat:null,
     "user": {
       "uuid": "985845549351702528",
       "id": 1029,
