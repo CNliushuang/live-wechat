@@ -11,6 +11,7 @@ Page({
     cashAccount:[],
     autoAccount:null,
     handleAccount:null,
+    bankAccount:null,
     userInfo:null,
     agree:true,
     analyze:null,
@@ -28,6 +29,12 @@ Page({
       })
     }
 
+    if (app.globalData.userInfo){
+      this.setData({
+        userInfo:app.globalData.userInfo
+      })
+    }
+
     if (app.globalData.plat) {
       this.setData({
         plat: app.globalData.plat
@@ -42,7 +49,7 @@ Page({
     })
 
     this.getCashAccount();
-    this.getUserInfo();
+    // this.getUserInfo();
     this.getAnalyze();
   },
   getAnalyze(){
@@ -83,22 +90,29 @@ Page({
   getCashAccount(){
     store.getCashAccount({},(resp) => {
       console.log(resp);
-      let handleAccount=null,autoAccount=null;
+      let handleAccount=null,autoAccount=null,bankAccount=null;
       if(resp.list && resp.list.length > 0){
         for(var items of resp.list){
-          if (items.cashType == "HANDLE" && items.deleted == 0){
+          if (items.accountType == 1 && items.deleted == 0){
             handleAccount = items;
           }
-          if (items.cashType == "AUTO" && items.deleted == 0) {
+          if (items.accountType == 0 && items.deleted == 0) {
             autoAccount = items;
           }
+
+          if (items.accountType == 2 && items.deleted == 0) {
+            bankAccount = items;
+          }
+
+
         }
       }
 
       this.setData({
         cashAccount:resp.list,
         autoAccount:autoAccount,
-        handleAccount: handleAccount
+        handleAccount: handleAccount,
+        bankAccount:bankAccount
       })
     })
   },
@@ -106,6 +120,13 @@ Page({
     const cashType = e.target.dataset.type;
     console.log(cashType)
     const url = '/pages/bind/bind?cashType=' + cashType;
+    wx.navigateTo({
+      url: url
+    })
+  },
+  viewBindBank(){//查看绑定账号
+    const url = '/pages/bind/bind?cashType=BANK&opt=view';
+    app.globalData.bankAccount = this.data.bankAccount;
     wx.navigateTo({
       url: url
     })
@@ -120,14 +141,25 @@ Page({
     if(!this.data.agree){
       return false;
     }
-    if (!this.data.autoAccount){
+    // if (!this.data.autoAccount){
+    //   wx.showToast({
+    //     title: '请选绑定小额提现账户',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false;
+    // }
+
+     if (!this.data.bankAccount){
       wx.showToast({
-        title: '请选绑定小额提现账户',
+        title: '请先认证身份信息及绑定银行卡',
         icon: 'none',
         duration: 2000
       })
       return false;
     }
+
+
 
     wx.navigateTo({
       url: '/pages/cash/cash?type=AUTO&account=' + JSON.stringify(this.data.autoAccount)
@@ -137,9 +169,18 @@ Page({
     if (!this.data.agree) {
       return false;
     }
-    if (!this.data.handleAccount) {
+    // if (!this.data.handleAccount) {
+    //   wx.showToast({
+    //     title: '请选绑定大额提现账户',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false;
+    // }
+
+    if (!this.data.bankAccount){
       wx.showToast({
-        title: '请选绑定大额提现账户',
+        title: '请先认证身份信息及绑定银行卡',
         icon: 'none',
         duration: 2000
       })

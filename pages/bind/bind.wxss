@@ -5,10 +5,15 @@
   flex-direction: column;
 }
 .bind_wrapper .bind_container{
-  flex-grow: 1;
-  height: 0;
   padding: 0 40rpx;
 }
+
+
+.bind_wrapper .bind_flex_container{
+  flex-grow: 1;
+  height: 0;
+}
+
 
 .bind_wrapper .bind_container .info{
   font-size: 24rpx;

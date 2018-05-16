@@ -40,7 +40,7 @@
 
 .account_wrapper .date_picker{
   height: 40rpx;
-  padding: 6rpx 10rpx;
+  padding: 6rpx 0;
   flex-shrink: 0;
   display: flex;
   flex-direction: row;
@@ -52,6 +52,15 @@
   flex: 1;
   font-size: 24rpx;
   color: #9B9B9B;
+}
+.account_wrapper .date_picker .section text{
+  font-weight: bold;
+}
+
+.account_wrapper .date_picker .section .picker{
+  background: #f4f4f4;
+  padding-left: 10rpx;
+  margin-right: 10rpx;
 }
 
 

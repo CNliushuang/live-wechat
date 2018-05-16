@@ -11,7 +11,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[],
+    cash_list: [],
+    account_list: [],
+    time_list:[],
     tab:"cash",
     limit:50,
     start:"",
@@ -19,6 +21,9 @@ Page({
   },
   switchTab(event){
     let tab = event.target.dataset.tab;
+    console.log(tab);
+
+
     if(tab != this.tab){
       this.setData({
         tab:tab
@@ -45,8 +50,8 @@ Page({
     })
     this.getList();
   },
-  getList(start){
-    start = start || 0;
+  getList(startNum){
+    let start = startNum || 0;
     let filter = {};
     if(this.data.start){
       var startDate = dateToTimes(this.data.start + ' 00:00:00');
@@ -62,21 +67,22 @@ Page({
       store.getCashList({ start, limit: this.data.limit, filter},(resp) => {
         // console.log(resp)
         this.setData({
-          list:resp.list
+          cash_list:resp.list
         })
       })
     }else if(this.data.tab == 'time'){
       store.getTimeList({ start, limit: this.data.limit, filter }, (resp) => {
         // console.log(resp)
         this.setData({
-          list: resp.list
+          time_list: resp.list
         })
       })
-    }else{
+    }else if(this.data.tab == 'account'){
       store.getAccountList({ start, limit: this.data.limit, filter }, (resp) => {
         // console.log(resp)
+      
         this.setData({
-          list: resp.list
+          account_list: resp.list
         })
       })
     }

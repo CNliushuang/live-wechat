@@ -11,6 +11,7 @@ Page({
    */
   data: {
     cashType:"AUTO",
+    opt:"",
     wechat:{
       accountName:"",
       accountNum:""
@@ -18,6 +19,15 @@ Page({
     zfb:{
       accountName: "",
       accountNum: ""
+    },
+    bank:{
+      accountName:"",//真实姓名
+      identityCardId:"",//身份证号
+      BCName:"",//开户银行
+      BCCity:"",//开户银行城市
+      BCBranch:"",//开户支行
+      accountNum:""//账号
+
     }
   },
 
@@ -31,6 +41,29 @@ Page({
         cashType: options.cashType
       })
     }
+    if(options.opt){
+      this.setData({
+        opt: options.opt
+      })
+      let bankAccount = app.globalData.bankAccount;
+
+
+
+      if(bankAccount){
+        this.setData({
+          bank: bankAccount
+        })
+      }
+
+
+
+    }
+
+
+
+
+
+
   },
   changeNum(e){
     const cashType = e.target.dataset.type;
@@ -58,6 +91,21 @@ Page({
       })
     }
   },
+
+  changeBank(e){
+    var key = e.target.dataset.type;
+    var val = e.detail.value;
+    var data = this.data.bank;
+    data[key] = val;
+
+    this.setData({
+      bank:data
+    })
+
+  },
+
+
+
   goBindHandle(){
     if (!this.data.zfb.accountName){
       wx.showToast({
@@ -78,7 +126,8 @@ Page({
     let accountName = this.data.zfb.accountName;
     let accountNum = this.data.zfb.accountNum;
     let cashType = this.data.cashType;
-    let accountType = this.data.cashType == "AUTO"?0:1;
+    let accountType = this.filterCashType(this.data.cashType);
+
     store.bindAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum},(resp) => {
       wx.showToast({
         title: "绑定成功",
@@ -106,7 +155,8 @@ Page({
     let accountName = this.data.wechat.accountName;
     let accountNum = app.globalData.userOpen.openId;
     let cashType = this.data.cashType;
-    let accountType = this.data.cashType == "AUTO" ? 0 : 1;
+    let accountType = this.filterCashType(this.data.cashType);
+
     let accountNickname = app.globalData.userInfo.nickName;
 
 
@@ -124,6 +174,96 @@ Page({
 
 
   },
+
+  goBindBank(){
+    var data = this.data.bank;
+    console.log(data);
+    if (!data.accountName) {
+      wx.showToast({
+        title: "请输入真实姓名",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    if (!data.identityCardId) {
+      wx.showToast({
+        title: "请输入身份证号",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    if (!data.BCName) {
+      wx.showToast({
+        title: "请输入开户银行",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    if (!data.accountNum) {
+      wx.showToast({
+        title: "请输入银行卡号",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+
+    let accountName = this.data.bank.accountName;
+    let cashType = 'AUTO';
+    let accountType = this.filterCashType(this.data.cashType);
+
+
+    let identityCardId = this.data.bank.identityCardId;
+    let BCName = this.data.bank.BCName;
+    let BCCity = this.data.bank.BCCity;
+    let BCBranch = this.data.bank.BCBranch;
+    let accountNum = this.data.bank.accountNum;
+
+
+
+
+
+
+
+    store.bindAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum ,identityCardId,BCName,BCCity,BCBranch}, (resp) => {
+      wx.showToast({
+        title: "绑定成功",
+        icon: 'success',
+        duration: 2000
+      })
+
+    })
+
+
+
+  },
+  filterCashType(key){
+    let result = 0;
+    switch(key){
+      case 'HANDLE': result = 1; break;
+      case 'AUTO': result = 0; break;
+      case 'BANK': result = 2; break;
+    }
+    return result;
+  },
+
+  viewHelp(){
+    const url = '/pages/help/help';
+    wx.navigateTo({
+      url: url
+    })
+  },
+
+
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

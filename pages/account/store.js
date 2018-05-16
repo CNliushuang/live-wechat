@@ -30,7 +30,7 @@ export const store = {
     let param = {
       start,
       limit,
-      type:0
+      'type':0
     };
     if (filter) {
       if (filter.startDate) {

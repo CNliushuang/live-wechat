@@ -7,15 +7,27 @@ const api = '/api';
 const app = getApp();
 
 export const store = {
-  bindAccount({ accountNickname, cashType, accountType, accountName, accountNum }, cb) {
+  bindAccount({ accountNickname, cashType, accountType, accountName, accountNum,identityCardId,BCName,BCCity,BCBranch }, cb) {
     const url = baseUrl + api + '/user/cash/account.json';
-    const param = {
+    let param = {
       accountNickname,
-      cashType,
       accountType,
       accountName,
       accountNum,
     };
+
+    if(accountType == 2){//绑定银行卡
+      param.identityCardId = identityCardId;
+      param.BCName = BCName;
+      param.BCCity = BCCity;
+      param.BCBranch = BCBranch;
+    }
+
+
+
+
+
+
     httpAgent(url, 'POST', param, cb);
   },
 

@@ -2,13 +2,14 @@
   "pages": [
     "pages/login/login",
     "pages/my/my",
-    "pages/cash/cash",
     "pages/account/account",
+    "pages/cash/cash",
     "pages/bind/bind",
     "pages/index/index",
     "pages/apply/apply",
     "pages/logs/logs",
-    "pages/auth/auth"
+    "pages/auth/auth",
+    "pages/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",

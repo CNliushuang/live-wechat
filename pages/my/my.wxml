@@ -48,6 +48,7 @@
   <!--user data end-->
   <!--bind account start-->
   <view class='bind_account'>
+    <!-- 
     <view class='items clearfix'>
       <view class='name'>小额提现账户</view>
       <view class='content'>
@@ -80,9 +81,32 @@
         <block wx:else>
           <view data-type="HANDLE" bindtap='goBind' class='go_bind'>去绑定</view>
         </block>
+      </view>
+    </view> -->
 
+    <view class='items clearfix'>
+      <view class='name'>身份认证</view>
+      <view class='content'>
+        <block wx:if="{{bankAccount}}">
+          已认证{{bankAccount.accountNickname}}
+        </block>
+        <block wx:else>
+          未认证
+        </block>
+        <block wx:if="{{bankAccount}}">
+          <view data-uuid="{{handleAccount.uuid}}" bindtap='viewBindBank' class='go_bind'>查看</view>
+        </block>
+        <block wx:else>
+          <view data-type="BANK" bindtap='goBind' class='go_bind'>去绑定</view>
+        </block>
       </view>
     </view>
+
+
+
+
+
+
   </view>
   <view class='operate'>
     <view class='help'>{{plat.autoTimeMax}}元以内使用小额提现，快速到账</view>

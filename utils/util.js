@@ -8,7 +8,7 @@ export const httpAgent = (url, requestType, params, cb, errorcb, showLoading) =>
     })
   }
   var token = app.globalData.token;
-  var plat = app.globalData.plat;
+  var plat = app.globalData.plat_net;
   if(url.indexOf("?") >= 0){
     url = url + '&plat='+plat;
   }else{

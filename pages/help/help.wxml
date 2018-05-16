@@ -1,0 +1,16 @@
+<!--pages/help/help.wxml-->
+
+<view class="help">
+	<view class="items">
+		<view class="name">客服QQ</view>
+		<view class="content">12389890</view>
+	</view>
+	<view class="items">
+		<view class="name">客服电话</view>
+		<view class="content">010-23788732</view>
+	</view>
+	<view class="items">
+		<view class="name">客服微信</view>
+		<view class="content">xinghuo123456</view>
+	</view>
+</view>
