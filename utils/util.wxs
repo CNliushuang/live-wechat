@@ -119,13 +119,12 @@ function getTaskIsDelay(times, status) {
 
 function cashFilter(status){
   var result = '';
-  status = status.toLowerCase();
   switch(status){
-    case 'waiting_approval': result = '待审批'; break;
-    case 'waiting_pay': result = '待打款'; break;
-    case 'cash_done': result = '提现完成'; break;
-    case 'cash_auto': result = '自动提现'; break;
-    case 'reject': result = '拒绝';break;
+    case 'WAITING_APPROVAL': result = '待审批'; break;
+    case 'WAITING_PAY': result = '待打款'; break;
+    case 'CASH_DONE': result = '提现完成'; break;
+    case 'APPROVAL_REJECT': result = '申请拒绝'; break;
+    case 'PAY_REJECT': result = '打款拒绝';break;
   }
 
   return result;

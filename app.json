@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/my/my",
     "pages/account/account",
+    "pages/my/my",
     "pages/cash/cash",
     "pages/bind/bind",
     "pages/index/index",
     "pages/apply/apply",
     "pages/logs/logs",
     "pages/auth/auth",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/info/info"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,10 +25,16 @@
     "backgroundColor": "#F7F7FA",
     "list": [
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/info/info",
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my_hover.png",
         "text": "我"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "images/cash.png",
+        "selectedIconPath": "images/cash_hover.png",
+        "text": "提现"
       },
       {
         "pagePath": "pages/account/account",

@@ -18,9 +18,9 @@ export const store = {
 
     if(accountType == 2){//绑定银行卡
       param.identityCardId = identityCardId;
-      param.BCName = BCName;
-      param.BCCity = BCCity;
-      param.BCBranch = BCBranch;
+      param.bcName = BCName;
+      param.bcCity = BCCity;
+      param.bcBranch = BCBranch;
     }
 
 

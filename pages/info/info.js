@@ -1,4 +1,4 @@
-// pages/help/help.js
+// pages/my/my.js
 import { store } from './store';
 const app = getApp();
 Page({
@@ -7,42 +7,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    kf:{
-      qq:"",
-      mobile:"",
-      wechat:""
-    }
+    user:null,
+    userInfo:null,
+    plat:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getKfInfo();
+    if (app.globalData.user){
+      this.setData({
+        user:app.globalData.user
+      })
+    }
+
+    if (app.globalData.userInfo){
+      this.setData({
+        userInfo:app.globalData.userInfo
+      })
+    }
+
+
+
+
+
+  },
+  goSignOut(){
+    wx.clearStorage();
+
+    wx.navigateTo({
+      url: '/pages/login/login'
+    })
+
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  getKfInfo(){
-    store.getKfInfo({key:"kf"},(resp) => {
-      if(resp.value){
-        this.setData({
-          kf:JSON.parse(resp.value)
-        })
-      }
-    })
-  },
-
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
   },
 
   /**

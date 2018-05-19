@@ -191,10 +191,43 @@ Page({
       url: '/pages/cash/cash?type=HANDLE&account=' + JSON.stringify(this.data.handleAccount)
     })
   },
+  goBankCash(){
+    if (!this.data.agree) {
+      return false;
+    }
+    // if (!this.data.handleAccount) {
+    //   wx.showToast({
+    //     title: '请选绑定大额提现账户',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false;
+    // }
+
+    if (!this.data.bankAccount){
+      wx.showToast({
+        title: '请先认证身份信息及绑定银行卡',
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    wx.navigateTo({
+      url: '/pages/cash/cash?type=HANDLE&account=' + JSON.stringify(this.data.bankAccount)
+    })
+  },
   agreeProtocol(){
     var result = !this.data.agree;
     this.setData({
       agree:result
+    })
+  },
+
+  viewHelp(){
+    const url = '/pages/help/help';
+    wx.navigateTo({
+      url: url
     })
   },
 

@@ -214,6 +214,24 @@ Page({
       return false;
     }
 
+    if (!data.BCCity) {
+      wx.showToast({
+        title: "请输入开户银行城市",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
+    if (!data.BCBranch) {
+      wx.showToast({
+        title: "请输入开户支行",
+        icon: 'none',
+        duration: 2000
+      })
+      return false;
+    }
+
 
     let accountName = this.data.bank.accountName;
     let cashType = 'AUTO';

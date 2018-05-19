@@ -22,10 +22,10 @@ App({
             // this.getUserOpen();
           }
         }else{
-          let url = '/pages/auth/auth';
-          wx.navigateTo({
-            url: url,
-          })
+          // let url = '/pages/auth/auth';
+          // wx.navigateTo({
+          //   url: url,
+          // })
         }
       }
     })
@@ -38,6 +38,7 @@ App({
         var code = res.code;
        
         this.globalData.userInfo = userinfo.userInfo;
+        this.setLocalStorage('userInfo',userinfo.userInfo);
         var encrypted_data = userinfo.encryptedData;
         var iv = userinfo.iv;
         let url = baseUrl + api + '/user/oauth2/wechat/weapp/decrypt.json';
@@ -56,6 +57,8 @@ App({
           success: resps => {
             console.log(resps)
             this.globalData.userOpen = resps.data.userOpen;
+            this.setLocalStorage('userOpen',resps.data.userOpen);
+
             callback();
 
           }
@@ -85,6 +88,7 @@ App({
           success: resp => {
             console.log(resp);
             this.globalData.userInfo = resp.userInfo;
+            this.setLocalStorage('userInfo',resp.userInfo);
             var encrypted_data = resp.encryptedData;
             var iv = resp.iv;
             let url = baseUrl + api + '/user/oauth2/wechat/weapp/decrypt.json';
@@ -103,6 +107,8 @@ App({
               success: resps => {
                 console.log(resps)
                 this.globalData.userOpen = resps.data.userOpen;
+                this.setLocalStorage('userOpen',resps.data.userOpen);
+
               }
             })
           }
@@ -125,9 +131,39 @@ App({
       console.error('callback is null');
     }
   },
+  setLocalStorage(key,val){
+
+
+    try {
+        wx.setStorageSync(key, val)
+    } catch (e) {    
+    }
+
+
+  },
+  getLocalStorage(key){
+    try {
+      var value = wx.getStorageSync(key)
+      if (value) {
+          // Do something with return value
+          return value;
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+
+
+
+
+
+  },
+
+
+
+
   globalData: {
     userInfo: null,
-    token: "f1f551608279124662a6a3793c2cb4ef",//f95d4b2bd0038b3913da73b093bc7aa7
+    token: "34e4f823c423328d2d9dccd01fdfa040",//f95d4b2bd0038b3913da73b093bc7aa7
     plat_net:"wechat",
     timer:null,
     userOpen:null,

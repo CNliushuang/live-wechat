@@ -62,78 +62,55 @@
 
 
 
-.my_wrapper .bind_account{
+.my_wrapper .user_info{
+  padding: 10rpx 20rpx;
   font-size: 24rpx;
   color: #9B9B9B;
-  padding: 0 33rpx;
-  margin-top: 15rpx;
+} 
+.my_wrapper .user_info .group{
+  margin-top: 20rpx;
 }
-.my_wrapper .bind_account .items{
-  padding: 15rpx 0;
+.my_wrapper .user_info .group .title{
+  font-size: 28rpx;
+  color: #000;
 }
-.my_wrapper .bind_account .items .name{
-  width: 150rpx;
+.my_wrapper .user_info .group .wrapper{
+  padding: 20rpx;
+}
+.my_wrapper .user_info .group .wrapper .items{
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+}
+
+.my_wrapper .user_info .group .wrapper .items .name{
+  width: 100rpx;
   float: left;
 }
-.my_wrapper .bind_account .items .content{
-  margin-left: 150rpx;
+
+.my_wrapper .user_info .group .wrapper .items .content{
+  margin-left: 110rpx;
 }
 
-.my_wrapper .bind_account .items .content .go_bind{
-  display: inline-block;
-  color: #000000;
-  margin-left: 10rpx;
+.my_wrapper .user_info .group .wrapper .part .part_content{
+  padding-left: 20rpx;
 }
 
-.my_wrapper .operate{
-  padding-top: 92rpx;
-}
-.my_wrapper .operate .help{
-  font-size: 24rpx;
-  color: #9E95A1;
-  text-align: center;
-}
 
-.my_wrapper .operate .items{
-  padding: 0 40rpx;
-  margin-top: 16rpx;
-  margin-bottom: 18rpx;
-}
-
-.my_wrapper .operate .protocol{
-  padding: 0 40rpx;
-  font-size: 24rpx;
-  color: #9E95A1;
-  height: 33rpx;
-  line-height: 33rpx;
-  margin-top: 55rpx;
-}
-
-.my_wrapper .operate .protocol.help{
-  text-align: center;
-}
-
-.my_wrapper .operate .protocol .protocol_box{
-  width: 410rpx;
-  margin: 0 auto;
-}
-
-.my_wrapper .operate .protocol v-checkbox{
+.my_wrapper .user_info .group.payFloor .wrapper .items .name{
+  width: 145rpx;
   float: left;
-  margin-right: 10rpx;
 }
 
-.my_wrapper .operate .protocol text{
-  color: #000000;
+.my_wrapper .user_info .group.payFloor .wrapper .items .content{
+  margin-left: 155rpx;
 }
 
 
 
 
-
-
-
-
-
-
+.my_wrapper .btn{
+  margin-top: 20rpx;
+}
 

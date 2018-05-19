@@ -20,6 +20,17 @@ export const store = {
     let param = {};
     httpAgent(url, 'POST', param, cb, errorcb);
   },
+
+  getUserMy({ token }, cb,errorcb) {
+    let url = baseUrl + api + '/users/my.json';
+    url = url + "?token="+token;
+    let param = {};
+    httpAgent(url, 'GET', param, cb, errorcb);
+  },
+
+
+
+
   getUserByTicket({ticket},cb){
     let url = baseUrl + api + '/users/login/exchange/ticket.json';
     url = url + "?ticket=" + ticket;

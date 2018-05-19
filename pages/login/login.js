@@ -18,7 +18,8 @@ Page({
     users:[],
     select_user_uuid:"",
     plats:[],
-    select_plat_uuid:""
+    select_plat_uuid:"",
+    showLoginBox:false
   },
   canILogin(){
     if(!wx.canIUse('button.open-type.getUserInfo')){
@@ -70,13 +71,14 @@ Page({
     clearInterval(app.globalData.timer);
     //存一份mobile
     app.globalData.mobile = this.data.login.mobile;
+    app.setLocalStorage('mobile',this.data.login.mobile);
 
     store.login({mobile:this.data.login.mobile,code:this.data.login.code},(resp) => {
       // console.log(resp)
       
       this.setData({
         "users": resp.users,
-        "plats":resp.plats
+        "plats":resp.plats && resp.plats || []
       })
       
       this.setData({
@@ -115,6 +117,10 @@ Page({
         app.globalData.token = resp.token;
         app.globalData.user = obj.user;
 
+        app.setLocalStorage('token',resp.token);
+
+
+
         if(obj.user.platId){
           store.getOrgDetail({orgId:obj.user.platId},(data) => {
             app.globalData.plat = data.org;
@@ -122,7 +128,7 @@ Page({
         }
 
 
-        let url = "/pages/my/my";
+        let url = "/pages/info/info";
         wx.switchTab({
           url: url
         })
@@ -249,7 +255,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo();
+    let token = app.getLocalStorage('token');
+    if(token){
+      app.globalData.token = token;
+
+      let mobile = app.getLocalStorage('mobile');
+      let userInfo = app.getLocalStorage('userInfo');
+      let userOpen = app.getLocalStorage('userOpen');
+
+      app.globalData.mobile = mobile;
+      app.globalData.userInfo = userInfo;
+      app.globalData.userOpen = userOpen;
+
+      store.getUserMy({token},(resp) => {
+        console.log(resp)
+        app.globalData.user = resp.user;
+        let url = "/pages/info/info";
+        wx.switchTab({
+          url: url
+        })
+        
+      },() => {//获取失败，跳转登录
+        wx.clearStorage();
+        wx.navigateTo({
+          url: '/pages/login/login'
+        })
+      })
+    }else{
+      this.setData({
+        showLoginBox:true
+      })
+    }
+
+
+
+
+
   },
 
   /**

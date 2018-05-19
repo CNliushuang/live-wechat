@@ -97,7 +97,7 @@
           <view data-uuid="{{handleAccount.uuid}}" bindtap='viewBindBank' class='go_bind'>查看</view>
         </block>
         <block wx:else>
-          <view data-type="BANK" bindtap='goBind' class='go_bind'>去绑定</view>
+          <view data-type="BANK" bindtap='goBind' class='go_bind'>去认证</view>
         </block>
       </view>
     </view>
@@ -109,20 +109,30 @@
 
   </view>
   <view class='operate'>
-    <view class='help'>{{plat.autoTimeMax}}元以内使用小额提现，快速到账</view>
-    <view class='items'>
+    <!-- <view class='help'>{{plat.autoTimeMax}}元以内使用小额提现，快速到账</view> -->
+<!--     <view class='items'>
       <v-button bindtap='goAutoCash' disabled="{{!agree}}">小额提现</v-button>
     </view>
     <view class='items'>
       <v-button bindtap='goHandleCash' disabled="{{!agree}}" cycle="true">大额提现</v-button>
     </view>
+ -->
+
+    <view class='items'>
+      <v-button bindtap='goBankCash' disabled="{{!agree}}">提现</v-button>
+    </view>
+
     <view class='protocol' bindtap='agreeProtocol'>
       <view class='protocol_box'>
         <v-checkbox  checked="{{agree}}"></v-checkbox>
         我已阅读并同意<text>《用户提现协议》</text>
       </view>
     </view>
-
+    <view class='protocol help' bindtap="viewHelp">
+      <view class='protocol_box'>
+        遇到问题？<text>联系客服</text>
+      </view>
+    </view>
 
   </view>
   <!--bind account end-->

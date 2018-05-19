@@ -72,7 +72,7 @@
       <block wx:if="{{tab == 'account'}}">
         <view wx:for="{{account_list}}" wx:key="uuid" class='items account'>
           <view class='top'>
-            <text>{{util.timesToDate(item.createDate,'yyyy-MM-dd HH:mm')}}</text>
+            <text>{{util.timesToDate(item.lastUpdate,'yyyy-MM-dd HH:mm')}}</text>
             账单号：{{item.trackNum}}
           </view>
           <view class='info clearfix'>
@@ -99,7 +99,7 @@
         <block wx:if="{{tab == 'time'}}">
         <view wx:for="{{time_list}}" wx:key="uuid" class='items account'>
           <view class='top'>
-            <text>直播时间：{{util.timesToDate(item.day,'yyyy-MM-dd HH:mm')}}</text>
+            <text>直播时间：{{util.timesToDate(item.day,'yyyy-MM-dd')}}</text>
           </view>
           <view class='info clearfix'>
             <view class='item'>
