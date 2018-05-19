@@ -115,7 +115,7 @@ Page({
       store.getUserByTicket({ticket:obj.ticket},(resp) => {
         // console.log(resp);
         app.globalData.token = resp.token;
-        app.globalData.user = obj.user;
+        app.globalData.user = resp.user;
 
         app.setLocalStorage('token',resp.token);
 

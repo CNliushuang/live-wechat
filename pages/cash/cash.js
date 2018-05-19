@@ -25,27 +25,27 @@ Page({
       })
       return false;
     }
-    if (!this.data.cashAccountName) {
-      wx.showToast({
-        title: '请输入真实姓名',
-        icon: 'none',
-        duration: 2000
-      })
-      return false;
-    }
-    if (!this.data.identify) {
-      wx.showToast({
-        title: '请输入身份证号',
-        icon: 'none',
-        duration: 2000
-      })
-      return false;
-    }
+    // if (!this.data.cashAccountName) {
+    //   wx.showToast({
+    //     title: '请输入真实姓名',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false;
+    // }
+    // if (!this.data.identify) {
+    //   wx.showToast({
+    //     title: '请输入身份证号',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    //   return false;
+    // }
     console.log(this.data);
 
 
-    let identityName = this.data.cashAccountName;
-    let identityCardId = this.data.identify;
+    let identityName = this.data.cashAccountName || '';
+    let identityCardId = this.data.identify || '';
     let cashAccountId = this.data.account.uuid;
     let money = this.data.money;
     let content = "";

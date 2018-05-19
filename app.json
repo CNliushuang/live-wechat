@@ -15,7 +15,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "星火艺人管理",
+    "navigationBarTitleText": "艺人管理系统",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

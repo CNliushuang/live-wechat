@@ -13,7 +13,7 @@
         {{user.platName}} 昵称：{{user.nickname}}
       </view>
       <view class='plat_id'>
-        ID:{{user.id}}
+        平台用户ID:{{user.thirdId}}
       </view>
       <view class='other_info'>
         公会：{{user.unionName}} 

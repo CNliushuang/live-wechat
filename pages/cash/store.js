@@ -9,13 +9,21 @@ const app = getApp();
 export const store = {
   newCach({ identityName, identityCardId, cashAccountId, money, content}, cb,errorcb) {
     const url = baseUrl + api + '/finance/cash/apply.json';
-    const param = {
-      identityName,
-      identityCardId,
+    let param = {
       cashAccountId,
       money,
       content,
     };
+    if(identityName){
+      param.identityName = identityName;
+    }
+
+    if(identityCardId){
+      param.identityCardId = identityCardId;
+    }
+
+
+
     httpAgent(url, 'POST', param, cb, errorcb);
   },
 
