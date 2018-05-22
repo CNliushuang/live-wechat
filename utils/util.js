@@ -31,6 +31,12 @@ export const httpAgent = (url, requestType, params, cb, errorcb, showLoading) =>
   //     params.token = token;
   //   }
   // }
+
+  console.log("联网")
+  console.log(url)
+  console.log(params)
+  console.log(requestType)
+
   wx.request({
     url: url, //仅为示例，并非真实的接口地址
     data: params,

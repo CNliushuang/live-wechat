@@ -24,7 +24,7 @@ Page({
     console.log(tab);
 
 
-    if(tab != this.tab){
+    if(tab){
       this.setData({
         tab:tab
       })
@@ -62,24 +62,30 @@ Page({
       filter.endDate = endDate;
     }
 
+    console.log(start)
+    console.log(this.data.limit)
+    console.log(filter)
 
     if(this.data.tab == 'cash'){
       store.getCashList({ start, limit: this.data.limit, filter},(resp) => {
-        // console.log(resp)
+        console.log('cash list')
+        console.log(resp)
         this.setData({
           cash_list:resp.list
         })
       })
     }else if(this.data.tab == 'time'){
       store.getTimeList({ start, limit: this.data.limit, filter }, (resp) => {
-        // console.log(resp)
+        console.log('time list')
+        console.log(resp)
         this.setData({
           time_list: resp.list
         })
       })
     }else if(this.data.tab == 'account'){
       store.getAccountList({ start, limit: this.data.limit, filter }, (resp) => {
-        // console.log(resp)
+        console.log('account list')
+        console.log(resp)
       
         this.setData({
           account_list: resp.list
