@@ -5,8 +5,6 @@
   flex-direction: column;
 }
 .cash_wrapper .cash_container{
-  flex-grow: 1;
-  height: 0;
   padding: 0 40rpx;
 }
 
@@ -54,6 +52,7 @@
   padding: 0 40rpx;
   height: 190rpx;
   flex-shrink: 0;
+  margin-top:20rpx;
 }
 
 

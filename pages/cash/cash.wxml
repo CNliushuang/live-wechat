@@ -14,6 +14,6 @@
     </view> -->
   </view>
   <view class='cash_btn'>
-    <v-button bindtap='goCash'>提现</v-button>
+    <v-button bindtap='goCash'>确定</v-button>
   </view>
 </view>

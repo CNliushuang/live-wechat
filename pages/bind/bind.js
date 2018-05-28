@@ -23,9 +23,9 @@ Page({
     bank:{
       accountName:"",//真实姓名
       identityCardId:"",//身份证号
-      BCName:"",//开户银行
-      BCCity:"",//开户银行城市
-      BCBranch:"",//开户支行
+      bcName:"",//开户银行
+      bcCity:"",//开户银行城市
+      bcBranch:"",//开户支行
       accountNum:""//账号
 
     }
@@ -196,7 +196,7 @@ Page({
       return false;
     }
 
-    if (!data.BCName) {
+    if (!data.bcName) {
       wx.showToast({
         title: "请输入开户银行",
         icon: 'none',
@@ -214,7 +214,7 @@ Page({
       return false;
     }
 
-    if (!data.BCCity) {
+    if (!data.bcCity) {
       wx.showToast({
         title: "请输入开户银行城市",
         icon: 'none',
@@ -223,7 +223,7 @@ Page({
       return false;
     }
 
-    if (!data.BCBranch) {
+    if (!data.bcBranch) {
       wx.showToast({
         title: "请输入开户支行",
         icon: 'none',
@@ -234,14 +234,14 @@ Page({
 
 
     let accountName = this.data.bank.accountName;
-    let cashType = 'AUTO';
+    let cashType = 'HANDLE';
     let accountType = this.filterCashType(this.data.cashType);
 
 
     let identityCardId = this.data.bank.identityCardId;
-    let BCName = this.data.bank.BCName;
-    let BCCity = this.data.bank.BCCity;
-    let BCBranch = this.data.bank.BCBranch;
+    let bcName = this.data.bank.bcName;
+    let bcCity = this.data.bank.bcCity;
+    let bcBranch = this.data.bank.bcBranch;
     let accountNum = this.data.bank.accountNum;
 
 
@@ -250,11 +250,16 @@ Page({
 
 
 
-    store.bindAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum ,identityCardId,BCName,BCCity,BCBranch}, (resp) => {
+    store.bindAccount({ accountNickname: accountNum, cashType, accountType, accountName, accountNum ,identityCardId,bcName,bcCity,bcBranch}, (resp) => {
       wx.showToast({
         title: "绑定成功",
         icon: 'success',
         duration: 2000
+      })
+
+
+      wx.navigateBack({
+        delta: 1
       })
 
     })

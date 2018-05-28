@@ -43,13 +43,13 @@
       <view class='bind_container'>
         <view class='info info_money'>绑定银行卡作为大额提现账户</view>
         <view class='input_box'>
-          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcName}}" data-type="BCName" type="text" placeholder="开户银行" auto-focus/>
+          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcName}}" data-type="bcName" type="text" placeholder="开户银行" auto-focus/>
         </view>
         <view class='input_box'>
-          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcCity}}" data-type="BCCity" type="text" placeholder="开户银行所在城市" auto-focus/>
+          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcCity}}" data-type="bcCity" type="text" placeholder="开户银行所在城市" auto-focus/>
         </view>
         <view class='input_box'>
-          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcBranch}}" data-type="BCBranch" type="text" placeholder="开户支行" auto-focus/>
+          <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.bcBranch}}" data-type="bcBranch" type="text" placeholder="开户支行" auto-focus/>
         </view>
         <view class='input_box'>
           <input bindinput='changeBank' disabled="{{opt?true:false}}" value="{{bank.accountNum}}" data-type="accountNum" type="text" placeholder="银行卡号" auto-focus/>

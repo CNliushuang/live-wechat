@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/login/login",
-    "pages/account/account",
     "pages/my/my",
+    "pages/account/account",
     "pages/cash/cash",
     "pages/bind/bind",
     "pages/index/index",

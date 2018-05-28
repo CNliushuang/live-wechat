@@ -163,7 +163,7 @@ App({
 
   globalData: {
     userInfo: null,
-    token: "34e4f823c423328d2d9dccd01fdfa040",//f95d4b2bd0038b3913da73b093bc7aa7
+    token: "f47a89d59fdc77dedce5158bd2ee73b6",//f95d4b2bd0038b3913da73b093bc7aa7
     plat_net:"wechat",
     timer:null,
     userOpen:null,
